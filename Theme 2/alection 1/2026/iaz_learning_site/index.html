@@ -1,0 +1,1427 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Інтерактивний навчальний сайт: основи збору та зберігання даних для ІАЗ ОУВ">
+  <title>Основи збору та зберігання даних для ІАЗ ОУВ</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до змісту</a>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">ІАЗ</div>
+        <div><strong>Навчальний модуль</strong><span>Тема 2 · Заняття 1</span></div>
+      </div>
+      <div class="sidebar-search">
+        <label for="searchInput">Пошук у матеріалах</label>
+        <div class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Термін або поняття"></div>
+        <div id="searchResults" class="search-results" hidden></div>
+      </div>
+      <nav class="side-nav" aria-label="Модулі заняття">
+        <button class="nav-link active" data-route="overview"><span class="nav-index">00</span><span>Огляд заняття</span></button>
+        <button class="nav-link" data-route="workshop"><span class="nav-index">ПР</span><span>Інтерактивний практикум</span><span class="done-dot"></span></button>
+        <button class="nav-link" data-route="quiz"><span class="nav-index">Т</span><span>Підсумковий тест</span><span class="done-dot"></span></button>
+        <div class="nav-separator">Повний конспект</div>
+        <button class="nav-link" data-route="zahalna-kharakterystyka-zaniattia"><span class="nav-index">01</span><span>Загальна характеристика заняття</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="vstup"><span class="nav-index">02</span><span>Вступ</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="osnovni-poniattia"><span class="nav-index">03</span><span>Основні поняття</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv"><span class="nav-index">04</span><span>Навчальне питання 1. Основи збору даних для ІАЗ ОУВ</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv"><span class="nav-index">05</span><span>Навчальне питання 2. Основи зберігання даних для ІАЗ ОУВ</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="uzahalnena-arkhitektura-zboru-ta-zberihannia-danykh"><span class="nav-index">06</span><span>Узагальнена архітектура збору та зберігання даних</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="navchalnyi-pryklad"><span class="nav-index">07</span><span>Навчальний приклад</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="praktychna-vprava-1-proiektuvannia-zboru-danykh"><span class="nav-index">08</span><span>Практична вправа 1. Проєктування збору даних</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="praktychna-vprava-2-vybir-skhovyshcha"><span class="nav-index">09</span><span>Практична вправа 2. Вибір сховища</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="sytuatsiine-zavdannia"><span class="nav-index">10</span><span>Ситуаційне завдання</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="typovi-pomylky-pid-chas-orhanizatsii-zberihannia"><span class="nav-index">11</span><span>Типові помилки під час організації зберігання</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="metodychni-rekomendatsii-vykladachu"><span class="nav-index">12</span><span>Методичні рекомендації викладачу</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="kontrolni-zapytannia"><span class="nav-index">13</span><span>Контрольні запитання</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="zavdannia-dlia-samostiinoi-roboty"><span class="nav-index">14</span><span>Завдання для самостійної роботи</span><span class="done-dot" aria-hidden="true"></span></button><button class="nav-link" data-route="vysnovky"><span class="nav-index">15</span><span>Висновки</span><span class="done-dot" aria-hidden="true"></span></button>
+      </nav>
+      <div class="sidebar-progress">
+        <div class="progress-label"><span>Прогрес</span><strong id="progressText">0%</strong></div>
+        <div class="progress-track"><div id="progressBar"></div></div>
+        <button id="resetProgress" class="text-button">Скинути прогрес</button>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar">
+        <button id="menuToggle" class="icon-button" aria-label="Відкрити меню">☰</button>
+        <div class="breadcrumbs"><span>Методологія ІАЗ ОУВ</span><b>›</b><strong id="currentCrumb">Огляд заняття</strong></div>
+        <div class="top-actions"><button id="fontToggle" class="icon-button" title="Змінити розмір тексту">A⁺</button><button id="themeToggle" class="icon-button" title="Змінити тему">◐</button></div>
+      </header>
+
+      <main id="main" tabindex="-1">
+        <section class="route-page overview-page active" id="page-overview" data-page="overview">
+          <div class="hero">
+            <div class="hero-copy">
+              <span class="hero-kicker">Тема 2 · Заняття 1</span>
+              <h1>Основи збору та зберігання даних для ІАЗ ОУВ</h1>
+              <p>Інтерактивний навчальний модуль про шлях даних від джерела до аналітичного висновку: збір, перевірка, очищення, зберігання, захист і використання.</p>
+              <div class="hero-actions"><button class="primary-btn" data-route="zahalna-kharakterystyka-zaniattia">Розпочати навчання</button><button class="secondary-btn" data-route="workshop">Відкрити практикум</button></div>
+            </div>
+            <div class="hero-visual" aria-label="Схема перетворення даних">
+              <div class="flow-node">Дані</div><span>→</span><div class="flow-node">Інформація</div><span>→</span><div class="flow-node">Знання</div><span>→</span><div class="flow-node accent">Рішення</div>
+            </div>
+          </div>
+          <div class="overview-grid">
+            <section class="info-panel"><span class="panel-icon">◫</span><div><h2>2 академічні години</h2><p>Теорія, обговорення, практичні вправи та контроль засвоєння.</p></div></section>
+            <section class="info-panel"><span class="panel-icon">◎</span><div><h2>2 навчальні питання</h2><p>Збір даних та організація їх надійного зберігання.</p></div></section>
+            <section class="info-panel"><span class="panel-icon">✓</span><div><h2>12 тестових завдань</h2><p>Миттєвий результат із поясненням кожної відповіді.</p></div></section>
+          </div>
+          <section class="learning-outcomes">
+            <div class="section-heading"><span>Результати навчання</span><h2>Після заняття слухач зможе</h2></div>
+            <div class="outcomes-grid">
+              <div><b>01</b><p>Розрізняти структуровані, напівструктуровані та неструктуровані дані.</p></div>
+              <div><b>02</b><p>Побудувати конвеєр збору, перевірки, очищення та завантаження даних.</p></div>
+              <div><b>03</b><p>Оцінити повноту, валідність, своєчасність та унікальність набору.</p></div>
+              <div><b>04</b><p>Обрати базу даних або сховище відповідно до характеру завдання.</p></div>
+              <div><b>05</b><p>Визначити вимоги до резервування, RPO, RTO та відновлення.</p></div>
+              <div><b>06</b><p>Урахувати доступність, цілісність, конфіденційність і простежуваність.</p></div>
+            </div>
+          </section>
+          <section class="architecture-preview">
+            <div class="section-heading"><span>Логіка системи</span><h2>Від джерела до аналітичного продукту</h2></div>
+            <div class="architecture-flow">
+              <div class="arch-step"><span>1</span><b>Джерела</b><small>форми, системи, датчики, документи</small></div>
+              <i>→</i><div class="arch-step"><span>2</span><b>Інтеграція</b><small>API, імпорт, потоки, ETL/ELT</small></div>
+              <i>→</i><div class="arch-step"><span>3</span><b>Контроль</b><small>перевірка, очищення, нормалізація</small></div>
+              <i>→</i><div class="arch-step"><span>4</span><b>Зберігання</b><small>БД, файли, сховища, озера</small></div>
+              <i>→</i><div class="arch-step"><span>5</span><b>Аналітика</b><small>запити, моделі, карти, звіти</small></div>
+            </div>
+          </section>
+          <section class="modules-section"><div class="section-heading"><span>Структура матеріалу</span><h2>Модулі повного конспекту</h2></div><div class="modules-grid"><button class="module-card" data-route="zahalna-kharakterystyka-zaniattia">
+      <span class="module-type">Теорія</span>
+      <strong>Загальна характеристика заняття</strong>
+      <span class="module-meta">≈ 2 хв читання</span>
+    </button><button class="module-card" data-route="vstup">
+      <span class="module-type">Теорія</span>
+      <strong>Вступ</strong>
+      <span class="module-meta">≈ 2 хв читання</span>
+    </button><button class="module-card" data-route="osnovni-poniattia">
+      <span class="module-type">Теорія</span>
+      <strong>Основні поняття</strong>
+      <span class="module-meta">≈ 2 хв читання</span>
+    </button><button class="module-card" data-route="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv">
+      <span class="module-type">Теорія</span>
+      <strong>Навчальне питання 1. Основи збору даних для ІАЗ ОУВ</strong>
+      <span class="module-meta">≈ 8 хв читання</span>
+    </button><button class="module-card" data-route="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv">
+      <span class="module-type">Теорія</span>
+      <strong>Навчальне питання 2. Основи зберігання даних для ІАЗ ОУВ</strong>
+      <span class="module-meta">≈ 9 хв читання</span>
+    </button><button class="module-card" data-route="uzahalnena-arkhitektura-zboru-ta-zberihannia-danykh">
+      <span class="module-type">Теорія</span>
+      <strong>Узагальнена архітектура збору та зберігання даних</strong>
+      <span class="module-meta">≈ 2 хв читання</span>
+    </button><button class="module-card" data-route="navchalnyi-pryklad">
+      <span class="module-type">Теорія</span>
+      <strong>Навчальний приклад</strong>
+      <span class="module-meta">≈ 2 хв читання</span>
+    </button><button class="module-card" data-route="praktychna-vprava-1-proiektuvannia-zboru-danykh">
+      <span class="module-type">Практика</span>
+      <strong>Практична вправа 1. Проєктування збору даних</strong>
+      <span class="module-meta">≈ 2 хв читання</span>
+    </button><button class="module-card" data-route="praktychna-vprava-2-vybir-skhovyshcha">
+      <span class="module-type">Практика</span>
+      <strong>Практична вправа 2. Вибір сховища</strong>
+      <span class="module-meta">≈ 2 хв читання</span>
+    </button><button class="module-card" data-route="sytuatsiine-zavdannia">
+      <span class="module-type">Практика</span>
+      <strong>Ситуаційне завдання</strong>
+      <span class="module-meta">≈ 2 хв читання</span>
+    </button><button class="module-card" data-route="typovi-pomylky-pid-chas-orhanizatsii-zberihannia">
+      <span class="module-type">Теорія</span>
+      <strong>Типові помилки під час організації зберігання</strong>
+      <span class="module-meta">≈ 2 хв читання</span>
+    </button><button class="module-card" data-route="metodychni-rekomendatsii-vykladachu">
+      <span class="module-type">Теорія</span>
+      <strong>Методичні рекомендації викладачу</strong>
+      <span class="module-meta">≈ 2 хв читання</span>
+    </button><button class="module-card" data-route="kontrolni-zapytannia">
+      <span class="module-type">Контроль</span>
+      <strong>Контрольні запитання</strong>
+      <span class="module-meta">≈ 2 хв читання</span>
+    </button><button class="module-card" data-route="zavdannia-dlia-samostiinoi-roboty">
+      <span class="module-type">Практика</span>
+      <strong>Завдання для самостійної роботи</strong>
+      <span class="module-meta">≈ 2 хв читання</span>
+    </button><button class="module-card" data-route="vysnovky">
+      <span class="module-type">Підсумок</span>
+      <strong>Висновки</strong>
+      <span class="module-meta">≈ 2 хв читання</span>
+    </button></div></section>
+        </section>
+
+        <section class="route-page workshop-page" id="page-workshop" data-page="workshop" hidden>
+          <header class="page-header"><div><span class="eyebrow">Практичний блок</span><h1>Інтерактивний практикум</h1><p>Виконайте вправи послідовно. Результати зберігаються у вашому браузері.</p></div></header>
+          <div class="activity-grid">
+            <section class="activity-card wide">
+              <div class="activity-head"><span class="activity-num">01</span><div><h2>Калькулятор якості даних</h2><p>Введіть кількість записів для розрахунку чотирьох коефіцієнтів та інтегральної оцінки.</p></div></div>
+              <div class="calculator-layout">
+                <div class="form-grid">
+                  <label>Усього обов’язкових значень<input id="qTotal" type="number" min="1" value="100"></label>
+                  <label>Заповнених значень<input id="qFilled" type="number" min="0" value="92"></label>
+                  <label>Перевірених записів<input id="qChecked" type="number" min="1" value="100"></label>
+                  <label>Коректних записів<input id="qValid" type="number" min="0" value="95"></label>
+                  <label>Усього отриманих даних<input id="qReceived" type="number" min="1" value="100"></label>
+                  <label>Отриманих своєчасно<input id="qTimely" type="number" min="0" value="88"></label>
+                  <label>Усього записів<input id="qRecords" type="number" min="1" value="100"></label>
+                  <label>Унікальних записів<input id="qUnique" type="number" min="0" value="97"></label>
+                </div>
+                <div class="quality-dashboard">
+                  <div class="score-ring" id="qualityRing"><span id="qualityScore">—</span><small>інтегральна якість</small></div>
+                  <div id="qualityBars" class="metric-bars"></div>
+                  <button id="calcQuality" class="primary-btn">Розрахувати</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="activity-card">
+              <div class="activity-head"><span class="activity-num">02</span><div><h2>Конструктор ETL</h2><p>Натисніть етапи в правильній послідовності.</p></div></div>
+              <div id="etlChoices" class="sequence-choices">
+                <button data-step="load">Завантаження</button><button data-step="transform">Перетворення</button><button data-step="extract">Вилучення</button>
+              </div>
+              <div id="etlSequence" class="sequence-slots"><span>1</span><span>2</span><span>3</span></div>
+              <p id="etlFeedback" class="feedback"></p><button id="etlReset" class="text-button">Почати знову</button>
+            </section>
+
+            <section class="activity-card">
+              <div class="activity-head"><span class="activity-num">03</span><div><h2>Радник зі сховищ</h2><p>Оберіть характер даних та ключову потребу.</p></div></div>
+              <label>Тип даних<select id="dataType"><option value="events">Структурований реєстр подій</option><option value="geo">Координати, маршрути, райони</option><option value="media">Фото, відео, великі документи</option><option value="telemetry">Телеметрія та часові показники</option><option value="relations">Складні зв’язки між об’єктами</option><option value="raw">Великі різнорідні первинні набори</option></select></label>
+              <label>Ключова вимога<select id="dataNeed"><option value="operations">Оперативні транзакції та цілісність</option><option value="analytics">Історична аналітика і звітність</option><option value="flexibility">Гнучка структура</option></select></label>
+              <button id="recommendStorage" class="primary-btn">Отримати рекомендацію</button>
+              <div id="storageResult" class="recommendation" aria-live="polite"></div>
+            </section>
+
+            <section class="activity-card wide">
+              <div class="activity-head"><span class="activity-num">04</span><div><h2>Аналіз повторних повідомлень</h2><p>Визначте правильну модель роботи з трьома повідомленнями про ймовірно одну подію.</p></div></div>
+              <div class="records-table">
+                <div class="record-row header"><span>Час</span><span>Координати</span><span>Джерело</span><span>Опис</span></div>
+                <div class="record-row"><span>08:10</span><span>50.4500, 30.5230</span><span>Джерело 1</span><span>Виявлено об’єкт</span></div>
+                <div class="record-row"><span>08:12</span><span>50.4502, 30.5232</span><span>Джерело 2</span><span>Виявлено об’єкт</span></div>
+                <div class="record-row"><span>08:14</span><span>50.4500, 30.5230</span><span>Джерело 1</span><span>Повторне повідомлення</span></div>
+              </div>
+              <fieldset class="scenario-options"><legend>Оберіть правильну дію</legend>
+                <label><input type="radio" name="duplicate" value="delete"> Видалити другий і третій записи</label>
+                <label><input type="radio" name="duplicate" value="overwrite"> Перезаписати перший запис найновішим</label>
+                <label><input type="radio" name="duplicate" value="link"> Зберегти всі первинні повідомлення та пов’язати їх з окремою підтвердженою подією</label>
+              </fieldset>
+              <button id="checkDuplicate" class="primary-btn">Перевірити рішення</button><p id="duplicateFeedback" class="feedback"></p>
+            </section>
+          </div>
+        </section>
+
+        <section class="route-page quiz-page" id="page-quiz" data-page="quiz" hidden>
+          <header class="page-header"><div><span class="eyebrow">Підсумковий контроль</span><h1>Тестування знань</h1><p>12 запитань. Для успішного проходження рекомендовано набрати не менше 75%.</p></div></header>
+          <div class="quiz-status"><div><span id="quizPosition">Запитання 1 з 12</span><strong id="quizScoreLive">0 правильних</strong></div><div class="progress-track"><div id="quizProgress"></div></div></div>
+          <div id="quizContainer" class="quiz-container"></div>
+          <div id="quizResult" class="quiz-result" hidden></div>
+        </section>
+
+        <article class="lesson-page" id="page-zahalna-kharakterystyka-zaniattia" data-page="zahalna-kharakterystyka-zaniattia" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 1 з 15</span><h1>Загальна характеристика заняття</h1></div>
+        <button class="complete-btn" data-complete="zahalna-kharakterystyka-zaniattia"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><p><strong>Вид заняття:</strong> групове заняття.<br/>
+<strong>Рекомендована тривалість:</strong> 2 академічні години.</p><h2 id="zahalna-kharakterystyka-zaniattia-navchalni-pytannia">Навчальні питання</h2><ol type="1">
+<li>Основи збору даних для інформаційно-аналітичного забезпечення органів військового управління.</li>
+<li>Основи зберігання даних для інформаційно-аналітичного забезпечення органів військового управління.</li>
+</ol><h2 id="zahalna-kharakterystyka-zaniattia-meta-zaniattia">Мета заняття</h2><p>Сформувати у слухачів системне розуміння процесів отримання, перевірки, передавання, накопичення та зберігання даних, які використовуються для інформаційно-аналітичного забезпечення органів військового управління.</p><h2 id="zahalna-kharakterystyka-zaniattia-navchalni-tsili">Навчальні цілі</h2><p>У результаті заняття слухачі повинні:</p><ul>
+<li>розуміти роль даних у системі інформаційно-аналітичного забезпечення;</li>
+<li>знати основні джерела та способи збору даних;</li>
+<li>розрізняти структуровані, напівструктуровані та неструктуровані дані;</li>
+<li>пояснювати етапи життєвого циклу даних;</li>
+<li>визначати основні показники якості даних;</li>
+<li>розуміти призначення баз даних, сховищ даних, озер даних і файлових сховищ;</li>
+<li>обґрунтовувати вибір способу зберігання даних залежно від виду аналітичного завдання;</li>
+<li>враховувати вимоги доступності, цілісності, конфіденційності, резервування та відновлення даних.</li>
+</ul><h2 id="zahalna-kharakterystyka-zaniattia-materialno-tekhnichne-zabezpechennia">Матеріально-технічне забезпечення</h2><ul>
+<li>мультимедійна презентація;</li>
+<li>схема інформаційно-аналітичної системи;</li>
+<li>приклади табличних, текстових, геопросторових і мультимедійних даних;</li>
+<li>демонстраційна база даних;</li>
+<li>персональні комп’ютери або робочі станції;</li>
+<li>засоби візуалізації даних;</li>
+<li>навчальний набір даних.</li>
+</ul></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-vstup" data-page="vstup" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 2 з 15</span><h1>Вступ</h1></div>
+        <button class="complete-btn" data-complete="vstup"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><p>Сучасне управління ґрунтується на здатності органу військового управління своєчасно отримувати, узагальнювати, перевіряти та аналізувати значні обсяги різнорідної інформації. Початковою основою будь-якого інформаційно-аналітичного продукту є дані.</p><p>Без належним чином організованого збору і зберігання даних неможливо забезпечити:</p><ul>
+<li>достовірне оцінювання обстановки;</li>
+<li>виявлення змін і тенденцій;</li>
+<li>прогнозування розвитку ситуації;</li>
+<li>підготовку обґрунтованих пропозицій;</li>
+<li>порівняння варіантів дій;</li>
+<li>підтримку прийняття управлінських рішень;</li>
+<li>накопичення досвіду та повторне використання результатів аналізу.</li>
+</ul><p>Дані самі по собі ще не є готовою інформацією. Для набуття практичної цінності вони повинні бути зібрані, перевірені, описані, структуровані, збережені та підготовлені до подальшого аналізу.</p><p>У спрощеному вигляді процес перетворення даних на управлінське рішення можна подати так:</p><blockquote>
+<p><strong>Дані → інформація → знання → аналітичний висновок → управлінське рішення.</strong></p>
+</blockquote></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-osnovni-poniattia" data-page="osnovni-poniattia" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 3 з 15</span><h1>Основні поняття</h1></div>
+        <button class="complete-btn" data-complete="osnovni-poniattia"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><h2 id="osnovni-poniattia-dani">Дані</h2><p><strong>Дані</strong> — це формалізоване подання фактів, подій, характеристик об’єктів або результатів спостереження, придатне для передавання, зберігання й автоматизованої обробки.</p><p>Прикладами даних можуть бути:</p><ul>
+<li>дата і час події;</li>
+<li>координати об’єкта;</li>
+<li>найменування підрозділу;</li>
+<li>кількісні показники;</li>
+<li>текст повідомлення;</li>
+<li>фотографія або відеозапис;</li>
+<li>електронний документ;</li>
+<li>результат вимірювання;</li>
+<li>запис журналу інформаційної системи;</li>
+<li>оцінка достовірності джерела.</li>
+</ul><h2 id="osnovni-poniattia-informatsiia">Інформація</h2><p><strong>Інформація</strong> — це дані, інтерпретовані у певному контексті та придатні для зменшення невизначеності під час прийняття рішення.</p><p>Наприклад, окремі координати є даними. Координати, пов’язані з типом об’єкта, часом його виявлення, джерелом повідомлення та оцінкою достовірності, утворюють інформацію, яка може використовуватися в процесі оцінювання обстановки.</p><h2 id="osnovni-poniattia-metadani">Метадані</h2><p><strong>Метадані</strong> — це дані, які описують інші дані.</p><p>До метаданих належать:</p><ul>
+<li>джерело отримання;</li>
+<li>дата і час створення;</li>
+<li>дата і час надходження;</li>
+<li>автор або відповідальний виконавець;</li>
+<li>формат файла;</li>
+<li>рівень доступу;</li>
+<li>версія документа;</li>
+<li>просторове охоплення;</li>
+<li>система координат;</li>
+<li>термін зберігання;</li>
+<li>оцінка достовірності;</li>
+<li>історія змін.</li>
+</ul><p>Метадані дають змогу правильно інтерпретувати дані, знаходити їх у сховищі, контролювати походження та оцінювати придатність до використання.</p><h2 id="osnovni-poniattia-zhyttievyi-tsykl-danykh">Життєвий цикл даних</h2><p>Життєвий цикл даних охоплює такі основні етапи:</p><ol type="1">
+<li>визначення інформаційної потреби;</li>
+<li>створення або отримання даних;</li>
+<li>передавання даних;</li>
+<li>первинна перевірка;</li>
+<li>очищення та перетворення;</li>
+<li>зберігання;</li>
+<li>надання доступу;</li>
+<li>аналіз і використання;</li>
+<li>архівування;</li>
+<li>знищення або вилучення після завершення строку зберігання.</li>
+</ol></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv" data-page="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 4 з 15</span><h1>Навчальне питання 1. Основи збору даних для ІАЗ ОУВ</h1></div>
+        <button class="complete-btn" data-complete="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><h2 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-poniattia-ta-meta-zboru-danykh">Поняття та мета збору даних</h2><p><strong>Збір даних</strong> — це організований процес отримання необхідних відомостей із визначених джерел, їх первинної реєстрації, перевірки та передавання до системи зберігання або обробки.</p><p>Метою збору даних є створення повної, актуальної, достовірної та придатної для аналізу інформаційної основи діяльності органу військового управління.</p><p>Збір даних повинен відповідати конкретній інформаційній потребі. Накопичення максимально можливої кількості відомостей без визначеної мети створює інформаційне перевантаження, ускладнює пошук і збільшує витрати на обробку та зберігання.</p><p>Перед початком збору необхідно відповісти на такі запитання:</p><ul>
+<li>яке рішення має бути підтримане;</li>
+<li>які дані необхідні для прийняття цього рішення;</li>
+<li>хто є споживачем інформації;</li>
+<li>з якою періодичністю необхідно оновлювати дані;</li>
+<li>який рівень точності потрібний;</li>
+<li>які джерела можуть надати потрібні відомості;</li>
+<li>у якому форматі мають надходити дані;</li>
+<li>які обмеження доступу необхідно враховувати.</li>
+</ul><h2 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-vydy-danykh-shcho-vykorystovuiutsia-v-iaz-ouv">Види даних, що використовуються в ІАЗ ОУВ</h2><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-za-formoiu-podannia">За формою подання</h3><table>
+<colgroup>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Вид даних</th>
+<th>Характеристика</th>
+<th>Приклади</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Структуровані</td>
+<td>Мають наперед визначену структуру, поля і типи</td>
+<td>Таблиці, реєстри, бази даних</td>
+</tr>
+<tr class="even">
+<td>Напівструктуровані</td>
+<td>Мають елементи структури, але не обов’язково табличну форму</td>
+<td>JSON, XML, електронні повідомлення</td>
+</tr>
+<tr class="odd">
+<td>Неструктуровані</td>
+<td>Не мають єдиної формалізованої структури</td>
+<td>Тексти, фотографії, відео, аудіо, презентації</td>
+</tr>
+<tr class="even">
+<td>Геопросторові</td>
+<td>Містять координати, геометрію та просторові атрибути</td>
+<td>Карти, маршрути, точки, райони</td>
+</tr>
+<tr class="odd">
+<td>Часові</td>
+<td>Відображають зміну показників у часі</td>
+<td>Журнали подій, телеметрія, часові ряди</td>
+</tr>
+<tr class="even">
+<td>Мультимедійні</td>
+<td>Містять візуальні або звукові матеріали</td>
+<td>Фото, відео, аудіозаписи</td>
+</tr>
+</tbody>
+</table><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-za-pokhodzhenniam">За походженням</h3><p>Дані можуть бути:</p><ul>
+<li><strong>внутрішніми</strong> — створеними всередині органу управління або підпорядкованих структур;</li>
+<li><strong>зовнішніми</strong> — отриманими від інших органів, установ, інформаційних систем чи відкритих джерел;</li>
+<li><strong>первинними</strong> — отриманими безпосередньо в результаті спостереження, вимірювання або реєстрації;</li>
+<li><strong>вторинними</strong> — сформованими на основі обробки, узагальнення чи інтерпретації первинних даних.</li>
+</ul><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-za-shvydkistiu-nadkhodzhennia">За швидкістю надходження</h3><ul>
+<li>пакетні дані — передаються через визначені проміжки часу;</li>
+<li>потокові дані — надходять безперервно або майже в реальному часі;</li>
+<li>оперативні повідомлення — передаються у разі настання визначеної події;</li>
+<li>періодична звітність — формується щоденно, щотижнево, щомісячно або за іншим графіком.</li>
+</ul><h2 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-osnovni-dzherela-danykh">Основні джерела даних</h2><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-dokumenty-ta-formalizovani-povidomlennia">Документи та формалізовані повідомлення</h3><ul>
+<li>донесення;</li>
+<li>звіти;</li>
+<li>зведення;</li>
+<li>журнали;</li>
+<li>плани;</li>
+<li>розпорядчі документи;</li>
+<li>електронні картки подій;</li>
+<li>результати виконання завдань.</li>
+</ul><p>Перевагою таких джерел є наявність установленої структури. Недоліком може бути затримка між подією та її документальним оформленням.</p><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-informatsiini-systemy-ta-reiestry">Інформаційні системи та реєстри</h3><p>Дані можуть автоматично отримуватися з:</p><ul>
+<li>відомчих інформаційних систем;</li>
+<li>систем електронного документообігу;</li>
+<li>геоінформаційних систем;</li>
+<li>систем управління ресурсами;</li>
+<li>систем моніторингу;</li>
+<li>спеціалізованих реєстрів;</li>
+<li>аналітичних платформ.</li>
+</ul><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-tekhnichni-zasoby-ta-datchyky">Технічні засоби та датчики</h3><p>До цієї групи належать дані:</p><ul>
+<li>автоматизованого спостереження;</li>
+<li>технічного контролю;</li>
+<li>телеметрії;</li>
+<li>навігаційних систем;</li>
+<li>метеорологічних засобів;</li>
+<li>журналів функціонування обладнання;</li>
+<li>систем контролю мереж і програмного забезпечення.</li>
+</ul><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-liudski-dzherela">Людські джерела</h3><p>Інформація може надходити через:</p><ul>
+<li>доповіді посадових осіб;</li>
+<li>опитування;</li>
+<li>інтерв’ю;</li>
+<li>експертне оцінювання;</li>
+<li>анкетування;</li>
+<li>результати спостереження;</li>
+<li>робочі наради.</li>
+</ul><p>Такі дані можуть мати високу цінність, але потребують перевірки через можливу суб’єктивність, неповноту або помилки інтерпретації.</p><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-vidkryti-dzherela">Відкриті джерела</h3><p>До відкритих джерел можуть належати:</p><ul>
+<li>офіційні вебресурси;</li>
+<li>статистичні портали;</li>
+<li>наукові публікації;</li>
+<li>повідомлення засобів масової інформації;</li>
+<li>супутникові знімки, доступні на законних підставах;</li>
+<li>відкриті картографічні сервіси;</li>
+<li>соціальні мережі;</li>
+<li>відкриті набори даних.</li>
+</ul><p>Відомості з відкритих джерел повинні перевірятися, порівнюватися з іншими повідомленнями та оцінюватися з урахуванням надійності джерела.</p><h2 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-sposoby-zboru-danykh">Способи збору даних</h2><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-ruchne-vvedennia">Ручне введення</h3><p>Дані вводяться оператором через електронну форму.</p><p><strong>Переваги:</strong></p><ul>
+<li>простота реалізації;</li>
+<li>можливість введення нестандартної інформації;</li>
+<li>контроль людиною змісту повідомлення.</li>
+</ul><p><strong>Недоліки:</strong></p><ul>
+<li>ризик помилок;</li>
+<li>різне написання однакових значень;</li>
+<li>повільність;</li>
+<li>залежність від підготовки оператора.</li>
+</ul><p>Для зменшення кількості помилок доцільно використовувати:</p><ul>
+<li>випадаючі списки;</li>
+<li>довідники;</li>
+<li>перевірку форматів;</li>
+<li>обов’язкові поля;</li>
+<li>маски введення;</li>
+<li>автоматичне заповнення дати та часу;</li>
+<li>перевірку координат;</li>
+<li>попередження про дублювання запису.</li>
+</ul><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-import-failiv">Імпорт файлів</h3><p>Дані завантажуються з файлів CSV, XLSX, JSON, XML або інших форматів.</p><p>Перед імпортом необхідно перевіряти:</p><ul>
+<li>кодування тексту;</li>
+<li>назви та порядок полів;</li>
+<li>формат дат;</li>
+<li>одиниці вимірювання;</li>
+<li>систему координат;</li>
+<li>наявність порожніх значень;</li>
+<li>відповідність типів даних;</li>
+<li>відсутність шкідливого вмісту.</li>
+</ul><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-intehratsiia-cherez-api">Інтеграція через API</h3><p><strong>API</strong> — це програмний інтерфейс, через який одна інформаційна система може автоматично отримувати або передавати дані іншій системі.</p><p>Переваги використання API:</p><ul>
+<li>автоматизація обміну;</li>
+<li>зменшення кількості ручних операцій;</li>
+<li>стандартизація форматів;</li>
+<li>можливість оперативного оновлення;</li>
+<li>фіксація часу та результатів обміну.</li>
+</ul><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-potokove-otrymannia-danykh">Потокове отримання даних</h3><p>Потоковий збір використовується, коли дані надходять постійно й повинні швидко оброблятися.</p><p>Типова схема:</p><blockquote>
+<p><strong>Джерело → канал передавання → брокер повідомлень → первинна обробка → сховище → аналітична система.</strong></p>
+</blockquote><p>Потокові дані потребують:</p><ul>
+<li>синхронізації часу;</li>
+<li>контролю черговості повідомлень;</li>
+<li>обробки повторних записів;</li>
+<li>контролю втрати повідомлень;</li>
+<li>механізмів тимчасового накопичення;</li>
+<li>моніторингу затримок.</li>
+</ul><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-avtomatyzovane-vyluchennia-danykh-iz-dokumentiv">Автоматизоване вилучення даних із документів</h3><p>Для опрацювання текстів, таблиць і зображень можуть використовуватися:</p><ul>
+<li>розпізнавання тексту;</li>
+<li>автоматичне виділення реквізитів;</li>
+<li>класифікація документів;</li>
+<li>пошук іменованих сутностей;</li>
+<li>виявлення дат, назв, координат і числових показників;</li>
+<li>перетворення неструктурованого тексту на структуровані записи.</li>
+</ul><p>Результати автоматизованого вилучення повинні проходити контроль, особливо якщо вони використовуються для підготовки критично важливих аналітичних висновків.</p><h2 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-etapy-orhanizatsii-zboru-danykh">Етапи організації збору даних</h2><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-etap-1-vyznachennia-informatsiinoi-potreby">Етап 1. Визначення інформаційної потреби</h3><p>Формулюється, які саме відомості потрібні, для якого завдання та в який строк.</p><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-etap-2-rozroblennia-modeli-danykh">Етап 2. Розроблення моделі даних</h3><p>Визначаються:</p><ul>
+<li>перелік об’єктів;</li>
+<li>характеристики об’єктів;</li>
+<li>обов’язкові поля;</li>
+<li>допустимі значення;</li>
+<li>зв’язки між об’єктами;</li>
+<li>правила оновлення.</li>
+</ul><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-etap-3-vybir-dzherel">Етап 3. Вибір джерел</h3><p>Джерела оцінюються за:</p><ul>
+<li>доступністю;</li>
+<li>компетентністю;</li>
+<li>надійністю;</li>
+<li>оперативністю;</li>
+<li>повнотою;</li>
+<li>форматом даних;</li>
+<li>обмеженнями щодо використання.</li>
+</ul><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-etap-4-vyznachennia-sposobu-otrymannia">Етап 4. Визначення способу отримання</h3><p>Обирається ручне введення, імпорт файлів, API, потокове передавання або поєднання кількох способів.</p><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-etap-5-pervynna-reiestratsiia">Етап 5. Первинна реєстрація</h3><p>Під час реєстрації до даних додаються:</p><ul>
+<li>унікальний ідентифікатор;</li>
+<li>час події;</li>
+<li>час отримання;</li>
+<li>джерело;</li>
+<li>відповідальний оператор;</li>
+<li>рівень доступу;</li>
+<li>ознака версії;</li>
+<li>оцінка достовірності.</li>
+</ul><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-etap-6-perevirka">Етап 6. Перевірка</h3><p>Перевіряється правильність формату, логічна узгодженість, повнота, наявність дублювання та допустимість значень.</p><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-etap-7-ochyshchennia-i-normalizatsiia">Етап 7. Очищення і нормалізація</h3><p>До основних операцій належать:</p><ul>
+<li>виправлення форматів;</li>
+<li>усунення зайвих пробілів;</li>
+<li>уніфікація назв;</li>
+<li>приведення дат до єдиного формату;</li>
+<li>перетворення одиниць вимірювання;</li>
+<li>стандартизація координат;</li>
+<li>об’єднання дубльованих записів;</li>
+<li>позначення відсутніх значень.</li>
+</ul><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-etap-8-peredavannia-do-skhovyshcha">Етап 8. Передавання до сховища</h3><p>Перевірені дані завантажуються до бази даних, файлового сховища, озера даних або іншого визначеного середовища.</p><h2 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-konveier-pidhotovky-danykh">Конвеєр підготовки даних</h2><p>У практиці інформаційно-аналітичних систем використовується процес <strong>ETL</strong>:</p><ol type="1">
+<li><strong>Extract — вилучення:</strong> отримання даних із джерел.</li>
+<li><strong>Transform — перетворення:</strong> очищення, перевірка, стандартизація та збагачення.</li>
+<li><strong>Load — завантаження:</strong> запис підготовлених даних до цільового сховища.</li>
+</ol><p>Альтернативним підходом є <strong>ELT</strong>:</p><ol type="1">
+<li>вилучення;</li>
+<li>завантаження до масштабованого сховища;</li>
+<li>подальше перетворення безпосередньо в середовищі зберігання.</li>
+</ol><p>ETL доцільний, коли до сховища повинні надходити вже перевірені й уніфіковані дані. ELT використовується, коли необхідно зберігати значні обсяги первинних даних і виконувати різні варіанти їх подальшої обробки.</p><h2 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-iakist-danykh">Якість даних</h2><p>Якість даних визначає придатність даних для виконання конкретного інформаційно-аналітичного завдання.</p><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-osnovni-kharakterystyky-iakosti">Основні характеристики якості</h3><table>
+<thead>
+<tr class="header">
+<th>Характеристика</th>
+<th>Зміст</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Повнота</td>
+<td>Наявність усіх необхідних значень</td>
+</tr>
+<tr class="even">
+<td>Точність</td>
+<td>Відповідність даних фактичному стану</td>
+</tr>
+<tr class="odd">
+<td>Достовірність</td>
+<td>Ступінь довіри до джерела та змісту</td>
+</tr>
+<tr class="even">
+<td>Актуальність</td>
+<td>Відповідність даних поточному моменту</td>
+</tr>
+<tr class="odd">
+<td>Своєчасність</td>
+<td>Надходження даних у визначений строк</td>
+</tr>
+<tr class="even">
+<td>Узгодженість</td>
+<td>Відсутність суперечностей між записами</td>
+</tr>
+<tr class="odd">
+<td>Унікальність</td>
+<td>Відсутність необґрунтованих дублікатів</td>
+</tr>
+<tr class="even">
+<td>Валідність</td>
+<td>Відповідність установленим форматам і правилам</td>
+</tr>
+<tr class="odd">
+<td>Простежуваність</td>
+<td>Можливість установити походження та історію змін</td>
+</tr>
+</tbody>
+</table><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-koefitsiient-povnoty">Коефіцієнт повноти</h3><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mtext mathvariant="normal">повн</mtext></msub><mo>=</mo><mfrac><msub><mi>N</mi><mtext mathvariant="normal">заповнених обов’язкових значень</mtext></msub><msub><mi>N</mi><mtext mathvariant="normal">усіх обов’язкових значень</mtext></msub></mfrac></mrow><annotation encoding="application/x-tex">
+K_{\text{повн}}=\frac{N_{\text{заповнених обов'язкових значень}}}{N_{\text{усіх обов'язкових значень}}}
+</annotation></semantics></math></p><p>Якщо з 100 обов’язкових значень заповнено 92, коефіцієнт повноти становить:</p><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mtext mathvariant="normal">повн</mtext></msub><mo>=</mo><mfrac><mn>92</mn><mn>100</mn></mfrac><mo>=</mo><mn>0</mn><mo>,</mo><mn>92</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+K_{\text{повн}}=\frac{92}{100}=0{,}92.
+</annotation></semantics></math></p><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-koefitsiient-validnosti">Коефіцієнт валідності</h3><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mtext mathvariant="normal">вал</mtext></msub><mo>=</mo><mfrac><msub><mi>N</mi><mtext mathvariant="normal">коректних записів</mtext></msub><msub><mi>N</mi><mtext mathvariant="normal">перевірених записів</mtext></msub></mfrac></mrow><annotation encoding="application/x-tex">
+K_{\text{вал}}=\frac{N_{\text{коректних записів}}}{N_{\text{перевірених записів}}}
+</annotation></semantics></math></p><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-koefitsiient-svoiechasnosti">Коефіцієнт своєчасності</h3><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mtext mathvariant="normal">своєч</mtext></msub><mo>=</mo><mfrac><msub><mi>N</mi><mtext mathvariant="normal">даних, отриманих у встановлений строк</mtext></msub><msub><mi>N</mi><mtext mathvariant="normal">усіх отриманих даних</mtext></msub></mfrac></mrow><annotation encoding="application/x-tex">
+K_{\text{своєч}}=\frac{N_{\text{даних, отриманих у встановлений строк}}}{N_{\text{усіх отриманих даних}}}
+</annotation></semantics></math></p><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-koefitsiient-unikalnosti">Коефіцієнт унікальності</h3><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mtext mathvariant="normal">унік</mtext></msub><mo>=</mo><mfrac><msub><mi>N</mi><mtext mathvariant="normal">унікальних записів</mtext></msub><msub><mi>N</mi><mtext mathvariant="normal">усіх записів</mtext></msub></mfrac></mrow><annotation encoding="application/x-tex">
+K_{\text{унік}}=\frac{N_{\text{унікальних записів}}}{N_{\text{усіх записів}}}
+</annotation></semantics></math></p><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-intehralnyi-pokaznyk-iakosti">Інтегральний показник якості</h3><p>Для узагальненого оцінювання може використовуватися зважена модель:</p><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><msub><mi>w</mi><mi>i</mi></msub><msub><mi>q</mi><mi>i</mi></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">
+Q=\sum_{i=1}^{m} w_iq_i,
+</annotation></semantics></math></p><p>де <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math> — інтегральний показник якості; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>q</mi><mi>i</mi></msub><annotation encoding="application/x-tex">q_i</annotation></semantics></math> — оцінка окремої характеристики; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>w</mi><mi>i</mi></msub><annotation encoding="application/x-tex">w_i</annotation></semantics></math> — ваговий коефіцієнт характеристики; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∑</mo><msub><mi>w</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\sum w_i=1</annotation></semantics></math>.</p><p>Наприклад:</p><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>25</mn><msub><mi>K</mi><mtext mathvariant="normal">повн</mtext></msub><mo>+</mo><mn>0</mn><mo>,</mo><mn>25</mn><msub><mi>K</mi><mtext mathvariant="normal">вал</mtext></msub><mo>+</mo><mn>0</mn><mo>,</mo><mn>30</mn><msub><mi>K</mi><mtext mathvariant="normal">своєч</mtext></msub><mo>+</mo><mn>0</mn><mo>,</mo><mn>20</mn><msub><mi>K</mi><mtext mathvariant="normal">унік</mtext></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">
+Q=0{,}25K_{\text{повн}}+0{,}25K_{\text{вал}}+0{,}30K_{\text{своєч}}+0{,}20K_{\text{унік}}.
+</annotation></semantics></math></p><p>Ваги повинні визначатися з урахуванням призначення конкретного набору даних.</p><h2 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-perevirka-dostovirnosti-danykh">Перевірка достовірності даних</h2><p>Достовірність не завжди можна встановити тільки автоматично. Для її оцінювання доцільно застосовувати:</p><ul>
+<li>порівняння з незалежними джерелами;</li>
+<li>перевірку внутрішньої логіки повідомлення;</li>
+<li>аналіз попередньої надійності джерела;</li>
+<li>перевірку часу і місця події;</li>
+<li>аналіз метаданих;</li>
+<li>установлення першоджерела;</li>
+<li>виявлення ознак редагування;</li>
+<li>експертне оцінювання;</li>
+<li>повторне спостереження або уточнення.</li>
+</ul><p>У системі доцільно окремо зберігати:</p><ul>
+<li>факт або повідомлення;</li>
+<li>джерело;</li>
+<li>рівень надійності джерела;</li>
+<li>рівень підтвердження відомостей;</li>
+<li>метод перевірки;</li>
+<li>дату останньої перевірки.</li>
+</ul><p>Необхідно розрізняти:</p><ul>
+<li>відсутність даних;</li>
+<li>нульове значення;</li>
+<li>невідоме значення;</li>
+<li>значення, яке ще перевіряється;</li>
+<li>значення, яке не може бути розкрито через обмеження доступу.</li>
+</ul><h2 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-typovi-problemy-zboru-danykh">Типові проблеми збору даних</h2><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-dubliuvannia">Дублювання</h3><p>Одна подія може бути зареєстрована кількома джерелами або кілька разів передана одним джерелом.</p><p>Для виявлення дублювання використовуються:</p><ul>
+<li>унікальні ідентифікатори;</li>
+<li>порівняння часу;</li>
+<li>порівняння координат;</li>
+<li>контрольні суми;</li>
+<li>аналіз подібності тексту;</li>
+<li>правила об’єднання записів.</li>
+</ul><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-rizni-formaty">Різні формати</h3><p>Одна дата може бути подана як:</p><ul>
+<li>06.08.2026;</li>
+<li>2026-08-06;</li>
+<li>06/08/2026;</li>
+<li>6 серпня 2026 року.</li>
+</ul><p>Для автоматизованого аналізу всі значення повинні приводитися до єдиного стандарту.</p><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-rizni-odynytsi-vymiriuvannia">Різні одиниці вимірювання</h3><p>Показники можуть подаватися в метрах, кілометрах, милях, секундах, хвилинах або годинах. Одиниця вимірювання повинна бути явно визначена в моделі даних.</p><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-rozbizhnosti-v-chasi">Розбіжності в часі</h3><p>Необхідно розрізняти:</p><ul>
+<li>час настання події;</li>
+<li>час фіксації;</li>
+<li>час створення повідомлення;</li>
+<li>час передавання;</li>
+<li>час отримання;</li>
+<li>час внесення до системи.</li>
+</ul><h3 id="navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv-vtrata-kontekstu">Втрата контексту</h3><p>Окреме числове значення без пояснення може бути неправильно інтерпретоване. Тому разом із даними необхідно зберігати контекст і метадані.</p></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv" data-page="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 5 з 15</span><h1>Навчальне питання 2. Основи зберігання даних для ІАЗ ОУВ</h1></div>
+        <button class="complete-btn" data-complete="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><h2 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-poniattia-ta-zavdannia-zberihannia-danykh">Поняття та завдання зберігання даних</h2><p><strong>Зберігання даних</strong> — це організоване розміщення даних на визначених носіях або в інформаційних системах із забезпеченням їх доступності, цілісності, захищеності, пошуку, відновлення та подальшого використання.</p><p>Основними завданнями зберігання є:</p><ul>
+<li>збереження отриманих даних;</li>
+<li>забезпечення швидкого пошуку;</li>
+<li>підтримання актуальної версії;</li>
+<li>збереження історії змін;</li>
+<li>розмежування доступу;</li>
+<li>резервне копіювання;</li>
+<li>відновлення після відмов;</li>
+<li>архівування;</li>
+<li>контроль строків зберігання;</li>
+<li>забезпечення можливості аналітичної обробки.</li>
+</ul><h2 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-osnovni-vymohy-do-system-zberihannia">Основні вимоги до систем зберігання</h2><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-dostupnist">Доступність</h3><p>Уповноважені користувачі повинні мати доступ до необхідних даних у встановлений час.</p><p>Коефіцієнт доступності може визначатися як:</p><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mfrac><msub><mi>T</mi><mtext mathvariant="normal">роботи</mtext></msub><mrow><msub><mi>T</mi><mtext mathvariant="normal">роботи</mtext></msub><mo>+</mo><msub><mi>T</mi><mtext mathvariant="normal">простою</mtext></msub></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">
+A=\frac{T_{\text{роботи}}}{T_{\text{роботи}}+T_{\text{простою}}}.
+</annotation></semantics></math></p><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-tsilisnist">Цілісність</h3><p>Дані не повинні бути несанкціоновано або випадково змінені, пошкоджені чи видалені.</p><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-konfidentsiinist">Конфіденційність</h3><p>Доступ до даних повинні мати лише уповноважені користувачі та системи.</p><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-masshtabovanist">Масштабованість</h3><p>Система повинна підтримувати збільшення:</p><ul>
+<li>кількості записів;</li>
+<li>кількості користувачів;</li>
+<li>швидкості надходження;</li>
+<li>кількості джерел;</li>
+<li>складності аналітичних запитів.</li>
+</ul><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-produktyvnist">Продуктивність</h3><p>Сховище повинно забезпечувати прийнятний час:</p><ul>
+<li>запису;</li>
+<li>пошуку;</li>
+<li>фільтрації;</li>
+<li>агрегування;</li>
+<li>передавання результатів;</li>
+<li>формування звітів.</li>
+</ul><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-prostezhuvanist">Простежуваність</h3><p>Необхідно мати можливість визначити:</p><ul>
+<li>хто створив запис;</li>
+<li>хто переглядав дані;</li>
+<li>хто вніс зміни;</li>
+<li>коли відбулася зміна;</li>
+<li>яке значення було до зміни;</li>
+<li>з якого джерела надійшли дані.</li>
+</ul><h2 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-osnovni-sposoby-zberihannia">Основні способи зберігання</h2><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-failove-zberihannia">Файлове зберігання</h3><p>Дані зберігаються у вигляді окремих файлів і каталогів.</p><p>Приклади:</p><ul>
+<li>текстові документи;</li>
+<li>електронні таблиці;</li>
+<li>презентації;</li>
+<li>фотографії;</li>
+<li>відеозаписи;</li>
+<li>архіви;</li>
+<li>файли JSON або CSV.</li>
+</ul><p><strong>Переваги:</strong></p><ul>
+<li>простота;</li>
+<li>зручність для документів і мультимедіа;</li>
+<li>можливість роботи зі стандартними програмами.</li>
+</ul><p><strong>Недоліки:</strong></p><ul>
+<li>складність контролю версій;</li>
+<li>можливість дублювання;</li>
+<li>обмежені можливості одночасної роботи;</li>
+<li>складність пошуку за змістом;</li>
+<li>недостатній контроль зв’язків між даними.</li>
+</ul><p>Файлове сховище доцільно використовувати для зберігання документів і великих мультимедійних об’єктів, але метадані про ці файли бажано зберігати в базі даних.</p><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-reliatsiini-bazy-danykh">Реляційні бази даних</h3><p>У реляційній базі дані організовані у вигляді таблиць, пов’язаних між собою.</p><p>Приклади систем:</p><ul>
+<li>PostgreSQL;</li>
+<li>MySQL;</li>
+<li>Microsoft SQL Server;</li>
+<li>Oracle Database;</li>
+<li>SQLite.</li>
+</ul><p>Реляційні бази доцільні для даних із чіткою структурою:</p><ul>
+<li>об’єкти;</li>
+<li>події;</li>
+<li>підрозділи;</li>
+<li>ресурси;</li>
+<li>документи;</li>
+<li>завдання;</li>
+<li>показники;</li>
+<li>користувачі;</li>
+<li>довідники.</li>
+</ul><p>Переваги:</p><ul>
+<li>контроль типів даних;</li>
+<li>підтримка зв’язків;</li>
+<li>зменшення дублювання;</li>
+<li>складні запити;</li>
+<li>транзакційність;</li>
+<li>механізми контролю цілісності;</li>
+<li>розмежування доступу.</li>
+</ul><p>Приклад структури таблиці подій:</p><table>
+<thead>
+<tr class="header">
+<th>Поле</th>
+<th>Тип</th>
+<th>Призначення</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>event_id</td>
+<td>Унікальний ідентифікатор</td>
+<td>Ідентифікація події</td>
+</tr>
+<tr class="even">
+<td>event_time</td>
+<td>Дата і час</td>
+<td>Час події</td>
+</tr>
+<tr class="odd">
+<td>received_time</td>
+<td>Дата і час</td>
+<td>Час отримання</td>
+</tr>
+<tr class="even">
+<td>source_id</td>
+<td>Ідентифікатор</td>
+<td>Джерело</td>
+</tr>
+<tr class="odd">
+<td>event_type</td>
+<td>Текст або код</td>
+<td>Тип події</td>
+</tr>
+<tr class="even">
+<td>latitude</td>
+<td>Число</td>
+<td>Географічна широта</td>
+</tr>
+<tr class="odd">
+<td>longitude</td>
+<td>Число</td>
+<td>Географічна довгота</td>
+</tr>
+<tr class="even">
+<td>description</td>
+<td>Текст</td>
+<td>Опис</td>
+</tr>
+<tr class="odd">
+<td>confidence</td>
+<td>Число або категорія</td>
+<td>Оцінка достовірності</td>
+</tr>
+<tr class="even">
+<td>access_level</td>
+<td>Код</td>
+<td>Рівень доступу</td>
+</tr>
+<tr class="odd">
+<td>created_by</td>
+<td>Ідентифікатор</td>
+<td>Автор запису</td>
+</tr>
+</tbody>
+</table><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-dokumentooriientovani-bazy-danykh">Документоорієнтовані бази даних</h3><p>Дані зберігаються у вигляді документів, найчастіше у форматі JSON.</p><p>Приклад запису:</p><div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a>  <span class="dt">"event_id"</span><span class="fu">:</span> <span class="st">"EVT-2026-00125"</span><span class="fu">,</span></span>
+<span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a>  <span class="dt">"event_time"</span><span class="fu">:</span> <span class="st">"2026-08-06T08:15:00+03:00"</span><span class="fu">,</span></span>
+<span id="cb1-4"><a aria-hidden="true" href="#cb1-4" tabindex="-1"></a>  <span class="dt">"source"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-5"><a aria-hidden="true" href="#cb1-5" tabindex="-1"></a>    <span class="dt">"source_id"</span><span class="fu">:</span> <span class="st">"SRC-017"</span><span class="fu">,</span></span>
+<span id="cb1-6"><a aria-hidden="true" href="#cb1-6" tabindex="-1"></a>    <span class="dt">"source_type"</span><span class="fu">:</span> <span class="st">"information_system"</span></span>
+<span id="cb1-7"><a aria-hidden="true" href="#cb1-7" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb1-8"><a aria-hidden="true" href="#cb1-8" tabindex="-1"></a>  <span class="dt">"event_type"</span><span class="fu">:</span> <span class="st">"observation"</span><span class="fu">,</span></span>
+<span id="cb1-9"><a aria-hidden="true" href="#cb1-9" tabindex="-1"></a>  <span class="dt">"location"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-10"><a aria-hidden="true" href="#cb1-10" tabindex="-1"></a>    <span class="dt">"latitude"</span><span class="fu">:</span> <span class="fl">50.4501</span><span class="fu">,</span></span>
+<span id="cb1-11"><a aria-hidden="true" href="#cb1-11" tabindex="-1"></a>    <span class="dt">"longitude"</span><span class="fu">:</span> <span class="fl">30.5234</span></span>
+<span id="cb1-12"><a aria-hidden="true" href="#cb1-12" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb1-13"><a aria-hidden="true" href="#cb1-13" tabindex="-1"></a>  <span class="dt">"confidence"</span><span class="fu">:</span> <span class="dv">0</span><span class="er">.</span><span class="dv">82</span><span class="fu">,</span></span>
+<span id="cb1-14"><a aria-hidden="true" href="#cb1-14" tabindex="-1"></a>  <span class="dt">"status"</span><span class="fu">:</span> <span class="st">"verified"</span></span>
+<span id="cb1-15"><a aria-hidden="true" href="#cb1-15" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><p>Переваги:</p><ul>
+<li>гнучкість структури;</li>
+<li>зручність роботи з JSON;</li>
+<li>можливість зберігати вкладені об’єкти;</li>
+<li>швидке створення прототипів.</li>
+</ul><p>Недоліки:</p><ul>
+<li>складніший контроль зв’язків;</li>
+<li>можливе дублювання даних;</li>
+<li>необхідність додаткового контролю структури.</li>
+</ul><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-bazy-chasovykh-riadiv">Бази часових рядів</h3><p>Призначені для даних, що надходять із часовими мітками:</p><ul>
+<li>телеметрії;</li>
+<li>показників стану;</li>
+<li>результатів моніторингу;</li>
+<li>завантаження систем;</li>
+<li>даних датчиків;</li>
+<li>журналів подій.</li>
+</ul><p>Основні операції:</p><ul>
+<li>отримання значень за період;</li>
+<li>визначення мінімуму та максимуму;</li>
+<li>розрахунок середніх значень;</li>
+<li>виявлення аномалій;</li>
+<li>порівняння часових інтервалів;</li>
+<li>прогнозування.</li>
+</ul><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-heoprostorovi-bazy-danykh">Геопросторові бази даних</h3><p>Геопросторові бази використовуються для зберігання:</p><ul>
+<li>точок;</li>
+<li>маршрутів;</li>
+<li>ліній;</li>
+<li>районів;</li>
+<li>меж;</li>
+<li>зон;</li>
+<li>шарів електронної карти.</li>
+</ul><p>Вони підтримують запити:</p><ul>
+<li>які об’єкти розташовані в заданому районі;</li>
+<li>яка відстань між двома об’єктами;</li>
+<li>які маршрути перетинають визначену зону;</li>
+<li>які події відбулися в заданому радіусі;</li>
+<li>які об’єкти найближчі до визначеної точки.</li>
+</ul><p>Для роботи з геопросторовими даними може застосовуватися PostgreSQL із розширенням PostGIS.</p><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-hrafovi-bazy-danykh">Графові бази даних</h3><p>Графова база даних подає інформацію як:</p><ul>
+<li>вузли — об’єкти;</li>
+<li>ребра — зв’язки між об’єктами;</li>
+<li>властивості — характеристики вузлів і зв’язків.</li>
+</ul><p>Такий підхід може використовуватися для аналізу:</p><ul>
+<li>організаційних зв’язків;</li>
+<li>залежностей між подіями;</li>
+<li>інформаційних потоків;</li>
+<li>мережевої взаємодії;</li>
+<li>зв’язків між документами;</li>
+<li>ланцюгів причин і наслідків.</li>
+</ul><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-skhovyshche-danykh">Сховище даних</h3><p><strong>Сховище даних</strong> — централізована система, призначена для інтеграції історичних даних із різних джерел та виконання аналітичних запитів.</p><p>Основні властивості:</p><ul>
+<li>предметна орієнтованість;</li>
+<li>інтегрованість;</li>
+<li>збереження історії;</li>
+<li>відносна незмінність завантажених даних;</li>
+<li>оптимізація для аналітики.</li>
+</ul><p>У сховищі даних можуть створюватися окремі <strong>вітрини даних</strong> для конкретних структурних підрозділів або функціональних напрямів.</p><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-ozero-danykh">Озеро даних</h3><p><strong>Озеро даних</strong> — масштабоване середовище, у якому зберігаються первинні структуровані, напівструктуровані та неструктуровані дані.</p><p>В озері можуть зберігатися:</p><ul>
+<li>таблиці;</li>
+<li>журнали;</li>
+<li>JSON-документи;</li>
+<li>зображення;</li>
+<li>відео;</li>
+<li>аудіо;</li>
+<li>геопросторові файли;</li>
+<li>результати моделей;</li>
+<li>архіви.</li>
+</ul><p>Перевага озера даних полягає у можливості зберегти первинний матеріал для подальшої обробки. Водночас без каталогізації, метаданих і правил управління озеро даних може перетворитися на некероване накопичення файлів.</p><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-arkhitektura-lakehouse">Архітектура Lakehouse</h3><p>Lakehouse поєднує:</p><ul>
+<li>гнучкість озера даних;</li>
+<li>структурованість сховища даних;</li>
+<li>підтримку аналітичних запитів;</li>
+<li>контроль схем;</li>
+<li>ведення версій;</li>
+<li>можливість використання даних для машинного навчання.</li>
+</ul><h2 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-porivniannia-osnovnykh-sposobiv-zberihannia">Порівняння основних способів зберігання</h2><table>
+<colgroup>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Спосіб</th>
+<th>Доцільне застосування</th>
+<th>Основне обмеження</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Файлове сховище</td>
+<td>Документи, фото, відео</td>
+<td>Складність пошуку та контролю зв’язків</td>
+</tr>
+<tr class="even">
+<td>Реляційна база</td>
+<td>Структуровані взаємопов’язані дані</td>
+<td>Потреба у визначеній схемі</td>
+</tr>
+<tr class="odd">
+<td>Документна база</td>
+<td>Гнучкі JSON-документи</td>
+<td>Складніший контроль узгодженості</td>
+</tr>
+<tr class="even">
+<td>База часових рядів</td>
+<td>Потокові показники та телеметрія</td>
+<td>Вузька спеціалізація</td>
+</tr>
+<tr class="odd">
+<td>Геопросторова база</td>
+<td>Карти, координати, райони</td>
+<td>Потреба у спеціальних засобах</td>
+</tr>
+<tr class="even">
+<td>Графова база</td>
+<td>Аналіз складних зв’язків</td>
+<td>Відмінна від табличної логіка роботи</td>
+</tr>
+<tr class="odd">
+<td>Сховище даних</td>
+<td>Звіти, історична аналітика</td>
+<td>Значні витрати на інтеграцію</td>
+</tr>
+<tr class="even">
+<td>Озеро даних</td>
+<td>Великі обсяги різнорідних даних</td>
+<td>Ризик недостатньої впорядкованості</td>
+</tr>
+<tr class="odd">
+<td>Lakehouse</td>
+<td>Аналітика та машинне навчання</td>
+<td>Вища складність побудови</td>
+</tr>
+</tbody>
+</table><h2 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-rivni-zberihannia-danykh">Рівні зберігання даних</h2><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-riven-1-pervynni-dani">Рівень 1. Первинні дані</h3><p>Зберігаються у вигляді, максимально наближеному до отриманого від джерела. Це забезпечує можливість повторної перевірки та обробки.</p><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-riven-2-ochyshcheni-dani">Рівень 2. Очищені дані</h3><p>Дані перевірені, нормалізовані, очищені від технічних помилок і приведені до єдиних форматів.</p><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-riven-3-intehrovani-dani">Рівень 3. Інтегровані дані</h3><p>Відомості з різних джерел об’єднані відповідно до єдиної моделі.</p><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-riven-4-analitychni-nabory">Рівень 4. Аналітичні набори</h3><p>Дані підготовлені для конкретних завдань:</p><ul>
+<li>розрахунку показників;</li>
+<li>побудови графіків;</li>
+<li>геопросторового аналізу;</li>
+<li>прогнозування;</li>
+<li>навчання моделей;</li>
+<li>формування звітів.</li>
+</ul><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-riven-5-arkhiv">Рівень 5. Архів</h3><p>Зберігаються історичні дані, які рідко використовуються, але мають довгострокову цінність.</p><h2 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-otsiniuvannia-neobkhidnoho-obsiahu-skhovyshcha">Оцінювання необхідного обсягу сховища</h2><p>Орієнтовний обсяг зберігання можна оцінити за формулою:</p><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo><mi>N</mi><mo>⋅</mo><mi>S</mi><mo>⋅</mo><mi>T</mi><mo>⋅</mo><msub><mi>K</mi><mtext mathvariant="normal">рез</mtext></msub><mo>⋅</mo><msub><mi>K</mi><mtext mathvariant="normal">служ</mtext></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">
+V=N\cdot S\cdot T\cdot K_{\text{рез}}\cdot K_{\text{служ}},
+</annotation></semantics></math></p><p>де <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math> — потрібний обсяг сховища; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> — кількість записів за одиницю часу; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math> — середній розмір одного запису; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math> — тривалість зберігання; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mtext mathvariant="normal">рез</mtext></msub><annotation encoding="application/x-tex">K_{\text{рез}}</annotation></semantics></math> — коефіцієнт резервування або реплікації; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>K</mi><mtext mathvariant="normal">служ</mtext></msub><annotation encoding="application/x-tex">K_{\text{служ}}</annotation></semantics></math> — коефіцієнт службових витрат.</p><p>Наприклад, якщо система отримує 100 000 записів на добу, середній розмір запису становить 2 КБ, а дані зберігаються протягом 365 діб:</p><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mtext mathvariant="normal">баз</mtext></msub><mo>=</mo><mn>100000</mn><mo>⋅</mo><mn>2</mn><mo>⋅</mo><mn>365</mn><mo>=</mo><mn>73</mn><mspace width="0.167em"></mspace><mn>000</mn><mspace width="0.167em"></mspace><mn>000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">КБ</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">
+V_{\text{баз}}=100000\cdot2\cdot365=73\,000\,000\ \text{КБ}.
+</annotation></semantics></math></p><p>До цього обсягу необхідно додати витрати на:</p><ul>
+<li>індекси;</li>
+<li>журнали;</li>
+<li>резервні копії;</li>
+<li>репліки;</li>
+<li>метадані;</li>
+<li>проміжні результати;</li>
+<li>зростання обсягів.</li>
+</ul><h2 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-indeksatsiia-ta-poshuk">Індексація та пошук</h2><p><strong>Індекс</strong> — додаткова структура, яка прискорює пошук даних.</p><p>Доцільно створювати індекси для полів, за якими часто здійснюються:</p><ul>
+<li>пошук;</li>
+<li>сортування;</li>
+<li>фільтрація;</li>
+<li>об’єднання таблиць;</li>
+<li>групування.</li>
+</ul><p>Типові поля для індексації:</p><ul>
+<li>дата і час;</li>
+<li>унікальний ідентифікатор;</li>
+<li>тип події;</li>
+<li>джерело;</li>
+<li>статус;</li>
+<li>координати;</li>
+<li>рівень доступу.</li>
+</ul><p>Надмірна кількість індексів може уповільнювати запис даних і збільшувати обсяг сховища. Тому індекси повинні створюватися відповідно до реальних аналітичних запитів.</p><h2 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-rezervne-kopiiuvannia-ta-vidnovlennia">Резервне копіювання та відновлення</h2><p>Резервне копіювання забезпечує можливість відновлення даних після:</p><ul>
+<li>технічної відмови;</li>
+<li>пошкодження носія;</li>
+<li>помилки користувача;</li>
+<li>помилки програмного забезпечення;</li>
+<li>несанкціонованої зміни;</li>
+<li>втрати основного сховища.</li>
+</ul><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-osnovni-vydy-rezervnykh-kopii">Основні види резервних копій</h3><ul>
+<li><strong>повна копія</strong> — містить усі визначені дані;</li>
+<li><strong>диференційна копія</strong> — містить зміни після останньої повної копії;</li>
+<li><strong>інкрементальна копія</strong> — містить зміни після останнього резервного копіювання;</li>
+<li><strong>знімок стану</strong> — фіксує стан системи на визначений момент.</li>
+</ul><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-pokaznyk-rpo">Показник RPO</h3><p><strong>RPO — Recovery Point Objective</strong> визначає максимально допустимий обсяг даних, який може бути втрачений, виражений у часі.</p><p>Наприклад, RPO 30 хвилин означає, що після відмови допускається втрата даних не більше ніж за останні 30 хвилин.</p><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-pokaznyk-rto">Показник RTO</h3><p><strong>RTO — Recovery Time Objective</strong> визначає максимально допустимий час відновлення роботи системи.</p><p>Наприклад, RTO 2 години означає, що система повинна бути відновлена не пізніше ніж через дві години після відмови.</p><p>Резервні копії необхідно не лише створювати, а й регулярно перевіряти шляхом тестового відновлення.</p><h2 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-replikatsiia-danykh">Реплікація даних</h2><p><strong>Реплікація</strong> — створення та підтримання копій даних на кількох серверах або майданчиках.</p><p>Вона може забезпечувати:</p><ul>
+<li>підвищення доступності;</li>
+<li>розподіл навантаження;</li>
+<li>швидше відновлення;</li>
+<li>географічне резервування;</li>
+<li>безперервність роботи.</li>
+</ul><p>Реплікація не замінює резервне копіювання, оскільки помилкове видалення або пошкодження даних може автоматично поширитися на всі репліки.</p><h2 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-zakhyst-danykh">Захист даних</h2><p>Захист повинен охоплювати весь життєвий цикл даних: від створення до знищення.</p><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-osnovni-zakhody">Основні заходи</h3><ul>
+<li>автентифікація користувачів;</li>
+<li>розмежування прав;</li>
+<li>рольова або атрибутна модель доступу;</li>
+<li>шифрування каналів передавання;</li>
+<li>шифрування носіїв;</li>
+<li>журналювання дій;</li>
+<li>контроль цілісності;</li>
+<li>резервне копіювання;</li>
+<li>сегментація інформаційної інфраструктури;</li>
+<li>контроль експорту;</li>
+<li>блокування неактивних облікових записів;</li>
+<li>регулярний перегляд прав доступу;</li>
+<li>безпечне видалення;</li>
+<li>навчання користувачів.</li>
+</ul><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-pryntsyp-naimenshykh-pryvileiv">Принцип найменших привілеїв</h3><p>Користувач або програмний компонент повинен мати лише ті права, які необхідні для виконання його функцій.</p><h3 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-rozpodil-rolei">Розподіл ролей</h3><p>Доцільно відокремлювати:</p><ul>
+<li>власника даних;</li>
+<li>адміністратора системи;</li>
+<li>адміністратора бази даних;</li>
+<li>оператора введення;</li>
+<li>аналітика;</li>
+<li>споживача аналітичної інформації;</li>
+<li>фахівця з інформаційної безпеки;</li>
+<li>аудитора.</li>
+</ul><h2 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-keruvannia-versiiamy-ta-istoriieiu-zmin">Керування версіями та історією змін</h2><p>Під час оновлення даних важливо не лише зберігати поточне значення, а й забезпечувати можливість установити попередній стан.</p><p>Запис історії може містити:</p><ul>
+<li>ідентифікатор об’єкта;</li>
+<li>попереднє значення;</li>
+<li>нове значення;</li>
+<li>час зміни;</li>
+<li>автора зміни;</li>
+<li>причину зміни;</li>
+<li>посилання на підтверджувальний документ.</li>
+</ul><p>Це дає змогу:</p><ul>
+<li>відновлювати попередні значення;</li>
+<li>аналізувати розвиток ситуації;</li>
+<li>установлювати відповідальність;</li>
+<li>виявляти помилки;</li>
+<li>забезпечувати аудит.</li>
+</ul><h2 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-kataloh-danykh">Каталог даних</h2><p><strong>Каталог даних</strong> — систематизований опис доступних наборів даних.</p><p>Для кожного набору доцільно зазначати:</p><ul>
+<li>назву;</li>
+<li>призначення;</li>
+<li>власника;</li>
+<li>джерело;</li>
+<li>структуру;</li>
+<li>формат;</li>
+<li>періодичність оновлення;</li>
+<li>рівень доступу;</li>
+<li>показники якості;</li>
+<li>строк зберігання;</li>
+<li>відповідального адміністратора;</li>
+<li>допустимі способи використання.</li>
+</ul><p>Каталог допомагає уникати повторного збору однакової інформації та дає аналітику змогу знайти потрібний набір даних.</p><h2 id="navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv-polityka-zberihannia">Політика зберігання</h2><p>Політика зберігання повинна визначати:</p><ul>
+<li>які дані зберігаються;</li>
+<li>хто є власником;</li>
+<li>де розташовується основна копія;</li>
+<li>скільки часу зберігаються дані;</li>
+<li>коли дані переводяться до архіву;</li>
+<li>хто має право доступу;</li>
+<li>як здійснюється резервне копіювання;</li>
+<li>як проводиться відновлення;</li>
+<li>коли та як дані знищуються;</li>
+<li>як документується історія використання.</li>
+</ul><p>Строк зберігання повинен визначатися не довільно, а відповідно до призначення даних, їх цінності, правових вимог і вимог керівних документів.</p></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-uzahalnena-arkhitektura-zboru-ta-zberihannia-danykh" data-page="uzahalnena-arkhitektura-zboru-ta-zberihannia-danykh" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 6 з 15</span><h1>Узагальнена архітектура збору та зберігання даних</h1></div>
+        <button class="complete-btn" data-complete="uzahalnena-arkhitektura-zboru-ta-zberihannia-danykh"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><p>Типову архітектуру можна подати у вигляді таких рівнів.</p><h2 id="uzahalnena-arkhitektura-zboru-ta-zberihannia-danykh-riven-1-dzherela">Рівень 1. Джерела</h2><ul>
+<li>документи;</li>
+<li>оператори;</li>
+<li>інформаційні системи;</li>
+<li>реєстри;</li>
+<li>датчики;</li>
+<li>відкриті джерела;</li>
+<li>зовнішні бази.</li>
+</ul><h2 id="uzahalnena-arkhitektura-zboru-ta-zberihannia-danykh-riven-2-intehratsiia">Рівень 2. Інтеграція</h2><ul>
+<li>електронні форми;</li>
+<li>API;</li>
+<li>імпорт файлів;</li>
+<li>брокери повідомлень;</li>
+<li>засоби розпізнавання;</li>
+<li>ETL- та ELT-процеси.</li>
+</ul><h2 id="uzahalnena-arkhitektura-zboru-ta-zberihannia-danykh-riven-3-kontrol-iakosti">Рівень 3. Контроль якості</h2><ul>
+<li>перевірка форматів;</li>
+<li>нормалізація;</li>
+<li>усунення дублікатів;</li>
+<li>оцінка достовірності;</li>
+<li>збагачення метаданими;</li>
+<li>реєстрація помилок.</li>
+</ul><h2 id="uzahalnena-arkhitektura-zboru-ta-zberihannia-danykh-riven-4-zberihannia">Рівень 4. Зберігання</h2><ul>
+<li>реляційні бази;</li>
+<li>документні бази;</li>
+<li>геопросторові бази;</li>
+<li>файлові сховища;</li>
+<li>озера даних;</li>
+<li>архіви.</li>
+</ul><h2 id="uzahalnena-arkhitektura-zboru-ta-zberihannia-danykh-riven-5-analityka">Рівень 5. Аналітика</h2><ul>
+<li>запити;</li>
+<li>статистична обробка;</li>
+<li>геопросторовий аналіз;</li>
+<li>машинне навчання;</li>
+<li>прогнозування;</li>
+<li>виявлення аномалій.</li>
+</ul><h2 id="uzahalnena-arkhitektura-zboru-ta-zberihannia-danykh-riven-6-predstavlennia">Рівень 6. Представлення</h2><ul>
+<li>інформаційні панелі;</li>
+<li>карти;</li>
+<li>графіки;</li>
+<li>зведення;</li>
+<li>аналітичні записки;</li>
+<li>попередження;</li>
+<li>автоматизовані звіти.</li>
+</ul><p>Над усіма рівнями повинні діяти механізми:</p><ul>
+<li>управління доступом;</li>
+<li>моніторингу;</li>
+<li>журналювання;</li>
+<li>резервування;</li>
+<li>контролю якості;</li>
+<li>управління метаданими.</li>
+</ul></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-navchalnyi-pryklad" data-page="navchalnyi-pryklad" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 7 з 15</span><h1>Навчальний приклад</h1></div>
+        <button class="complete-btn" data-complete="navchalnyi-pryklad"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><h2 id="navchalnyi-pryklad-umova">Умова</h2><p>Орган військового управління отримує повідомлення про події з декількох джерел:</p><ul>
+<li>електронної форми;</li>
+<li>таблиці CSV;</li>
+<li>зовнішньої інформаційної системи через API;</li>
+<li>текстових документів.</li>
+</ul><p>Необхідно забезпечити формування єдиного реєстру подій і відображення перевірених даних на електронній карті.</p><h2 id="navchalnyi-pryklad-zaproponovanyi-protses">Запропонований процес</h2><ol type="1">
+<li>Кожне джерело передає дані до модуля інтеграції.</li>
+<li>Даним присвоюється унікальний ідентифікатор.</li>
+<li>Перевіряються дата, час, координати та тип події.</li>
+<li>Назви об’єктів приводяться до значень єдиного довідника.</li>
+<li>Виконується пошук можливих дублікатів.</li>
+<li>Дані зберігаються в таблиці первинних повідомлень.</li>
+<li>Після перевірки формується запис у таблиці підтверджених подій.</li>
+<li>Документи, фото та відео зберігаються у файловому сховищі.</li>
+<li>Посилання на файли та їх метадані зберігаються в базі даних.</li>
+<li>Геопросторові поля обробляються засобами геопросторової бази.</li>
+<li>Зміни фіксуються в журналі аудиту.</li>
+<li>Перевірені події відображаються на інформаційній панелі.</li>
+</ol><h2 id="navchalnyi-pryklad-rekomendovana-struktura">Рекомендована структура</h2><ul>
+<li>PostgreSQL — для структурованих записів;</li>
+<li>PostGIS — для координат і просторових операцій;</li>
+<li>файлове або об’єктне сховище — для документів і мультимедіа;</li>
+<li>API — для автоматизованого обміну;</li>
+<li>модуль ETL — для очищення й інтеграції;</li>
+<li>інформаційна панель — для візуалізації;</li>
+<li>система резервного копіювання — для відновлення даних.</li>
+</ul></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-praktychna-vprava-1-proiektuvannia-zboru-danykh" data-page="praktychna-vprava-1-proiektuvannia-zboru-danykh" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 8 з 15</span><h1>Практична вправа 1. Проєктування збору даних</h1></div>
+        <button class="complete-btn" data-complete="praktychna-vprava-1-proiektuvannia-zboru-danykh"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><p>Слухачам пропонується визначити порядок збору даних для підготовки щоденного інформаційно-аналітичного зведення.</p><p>Необхідно визначити:</p><ol type="1">
+<li>основних споживачів інформації;</li>
+<li>перелік необхідних показників;</li>
+<li>джерела даних;</li>
+<li>періодичність надходження;</li>
+<li>формат передавання;</li>
+<li>обов’язкові поля;</li>
+<li>правила перевірки;</li>
+<li>критерії достовірності;</li>
+<li>відповідальних осіб;</li>
+<li>порядок дій у разі відсутності або суперечності даних.</li>
+</ol><p><strong>Очікуваний результат:</strong></p><table style="width:100%;">
+<colgroup>
+<col style="width: 16%"/>
+<col style="width: 16%"/>
+<col style="width: 16%"/>
+<col style="width: 16%"/>
+<col style="width: 16%"/>
+<col style="width: 16%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Показник</th>
+<th>Джерело</th>
+<th>Періодичність</th>
+<th>Формат</th>
+<th>Відповідальний</th>
+<th>Спосіб перевірки</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-praktychna-vprava-2-vybir-skhovyshcha" data-page="praktychna-vprava-2-vybir-skhovyshcha" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 9 з 15</span><h1>Практична вправа 2. Вибір сховища</h1></div>
+        <button class="complete-btn" data-complete="praktychna-vprava-2-vybir-skhovyshcha"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><p>Для кожного виду даних необхідно обрати доцільний спосіб зберігання.</p><table>
+<colgroup>
+<col style="width: 50%"/>
+<col style="width: 50%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Дані</th>
+<th>Рекомендований варіант</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Реєстр подій</td>
+<td>Реляційна база даних</td>
+</tr>
+<tr class="even">
+<td>Координати та райони</td>
+<td>Геопросторова база даних</td>
+</tr>
+<tr class="odd">
+<td>Фотографії та відеозаписи</td>
+<td>Файлове або об’єктне сховище</td>
+</tr>
+<tr class="even">
+<td>Журнали технічних показників</td>
+<td>База часових рядів</td>
+</tr>
+<tr class="odd">
+<td>Документи зі змінною структурою</td>
+<td>Документна база або файлове сховище</td>
+</tr>
+<tr class="even">
+<td>Зв’язки між об’єктами</td>
+<td>Графова база даних</td>
+</tr>
+<tr class="odd">
+<td>Історичні дані для звітності</td>
+<td>Сховище даних</td>
+</tr>
+<tr class="even">
+<td>Великі первинні набори</td>
+<td>Озеро даних</td>
+</tr>
+</tbody>
+</table><p>Слухачі повинні обґрунтувати свій вибір за критеріями:</p><ul>
+<li>структура;</li>
+<li>обсяг;</li>
+<li>швидкість надходження;</li>
+<li>частота оновлення;</li>
+<li>спосіб пошуку;</li>
+<li>вимоги до історії;</li>
+<li>рівень доступу;</li>
+<li>потреба в аналітичній обробці.</li>
+</ul></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-sytuatsiine-zavdannia" data-page="sytuatsiine-zavdannia" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 10 з 15</span><h1>Ситуаційне завдання</h1></div>
+        <button class="complete-btn" data-complete="sytuatsiine-zavdannia"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><p>У базі даних виявлено три записи:</p><table>
+<colgroup>
+<col style="width: 20%"/>
+<col style="width: 20%"/>
+<col style="width: 20%"/>
+<col style="width: 20%"/>
+<col style="width: 20%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Час</th>
+<th>Координати</th>
+<th>Тип</th>
+<th>Джерело</th>
+<th>Опис</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>08:10</td>
+<td>50.4500, 30.5230</td>
+<td>Спостереження</td>
+<td>Джерело 1</td>
+<td>Виявлено об’єкт</td>
+</tr>
+<tr class="even">
+<td>08:12</td>
+<td>50.4502, 30.5232</td>
+<td>Спостереження</td>
+<td>Джерело 2</td>
+<td>Виявлено об’єкт</td>
+</tr>
+<tr class="odd">
+<td>08:14</td>
+<td>50.4500, 30.5230</td>
+<td>Спостереження</td>
+<td>Джерело 1</td>
+<td>Повторне повідомлення</td>
+</tr>
+</tbody>
+</table><h2 id="sytuatsiine-zavdannia-pytannia-dlia-obhovorennia">Питання для обговорення</h2><ol type="1">
+<li>Чи є ці записи дублюванням?</li>
+<li>Які додаткові поля потрібні для прийняття рішення?</li>
+<li>Чи потрібно видаляти повторні записи?</li>
+<li>Як зберегти інформацію про всі джерела?</li>
+<li>Як визначити достовірність події?</li>
+<li>Який запис повинен відображатися на інформаційній панелі?</li>
+<li>Як зберегти історію об’єднання записів?</li>
+</ol><h2 id="sytuatsiine-zavdannia-metodychnyi-vysnovok">Методичний висновок</h2><p>Повторні повідомлення не завжди потрібно фізично видаляти. Доцільно зберігати первинні повідомлення окремо, а підтверджену подію формувати як самостійний об’єкт, пов’язаний з усіма джерелами.</p></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-typovi-pomylky-pid-chas-orhanizatsii-zberihannia" data-page="typovi-pomylky-pid-chas-orhanizatsii-zberihannia" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 11 з 15</span><h1>Типові помилки під час організації зберігання</h1></div>
+        <button class="complete-btn" data-complete="typovi-pomylky-pid-chas-orhanizatsii-zberihannia"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><ol type="1">
+<li>Зберігання всіх даних в одній великій таблиці.</li>
+<li>Використання електронних таблиць замість багатокористувацької бази даних.</li>
+<li>Відсутність унікальних ідентифікаторів.</li>
+<li>Зберігання різних значень в одному полі.</li>
+<li>Використання довільного тексту замість довідників.</li>
+<li>Відсутність метаданих.</li>
+<li>Перезапис даних без збереження історії.</li>
+<li>Відсутність резервних копій.</li>
+<li>Відсутність тестового відновлення.</li>
+<li>Надання надмірних прав користувачам.</li>
+<li>Зберігання копій одного файла в різних каталогах.</li>
+<li>Відсутність єдиних форматів дати, часу та координат.</li>
+<li>Відсутність політики архівування.</li>
+<li>Змішування первинних і перевірених даних.</li>
+<li>Відсутність відповідального власника набору даних.</li>
+</ol></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-metodychni-rekomendatsii-vykladachu" data-page="metodychni-rekomendatsii-vykladachu" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 12 з 15</span><h1>Методичні рекомендації викладачу</h1></div>
+        <button class="complete-btn" data-complete="metodychni-rekomendatsii-vykladachu"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><p>Під час розкриття першого навчального питання доцільно:</p><ul>
+<li>показати слухачам декілька різних форматів одного повідомлення;</li>
+<li>запропонувати визначити обов’язкові поля;</li>
+<li>продемонструвати наслідки помилкової дати або координат;</li>
+<li>пояснити різницю між подією і повідомленням про подію;</li>
+<li>продемонструвати приклад дублювання;</li>
+<li>звернути увагу на важливість метаданих.</li>
+</ul><p>Під час розкриття другого навчального питання доцільно:</p><ul>
+<li>порівняти папку з файлами та базу даних;</li>
+<li>показати просту таблицю PostgreSQL;</li>
+<li>продемонструвати пошук за датою, типом і районом;</li>
+<li>пояснити різницю між оперативною базою і сховищем даних;</li>
+<li>показати приклад резервної копії;</li>
+<li>обговорити наслідки втрати або несанкціонованої зміни даних.</li>
+</ul></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-kontrolni-zapytannia" data-page="kontrolni-zapytannia" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 13 з 15</span><h1>Контрольні запитання</h1></div>
+        <button class="complete-btn" data-complete="kontrolni-zapytannia"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><ol type="1">
+<li>Що таке дані та чим вони відрізняються від інформації?</li>
+<li>Яку роль відіграють метадані?</li>
+<li>Які етапи охоплює життєвий цикл даних?</li>
+<li>Які дані називаються структурованими?</li>
+<li>Наведіть приклади напівструктурованих даних.</li>
+<li>Які основні джерела даних використовуються в ІАЗ ОУВ?</li>
+<li>У чому полягає відмінність пакетного і потокового збору?</li>
+<li>Що таке API?</li>
+<li>Які операції виконуються в межах ETL?</li>
+<li>Чим ELT відрізняється від ETL?</li>
+<li>Які характеристики визначають якість даних?</li>
+<li>Як розрахувати коефіцієнт повноти?</li>
+<li>Чому повторні повідомлення не завжди потрібно видаляти?</li>
+<li>Для чого використовуються унікальні ідентифікатори?</li>
+<li>Чим реляційна база відрізняється від файлового сховища?</li>
+<li>Для яких даних доцільно використовувати геопросторову базу?</li>
+<li>Що таке сховище даних?</li>
+<li>Чим озеро даних відрізняється від сховища даних?</li>
+<li>Що визначають показники RPO і RTO?</li>
+<li>Чому реплікація не замінює резервне копіювання?</li>
+<li>У чому полягає принцип найменших привілеїв?</li>
+<li>Для чого необхідно зберігати історію змін?</li>
+<li>Яке призначення каталогу даних?</li>
+<li>Які наслідки може мати відсутність єдиної моделі даних?</li>
+<li>Які способи захисту повинні застосовуватися під час зберігання даних?</li>
+</ol></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-zavdannia-dlia-samostiinoi-roboty" data-page="zavdannia-dlia-samostiinoi-roboty" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 14 з 15</span><h1>Завдання для самостійної роботи</h1></div>
+        <button class="complete-btn" data-complete="zavdannia-dlia-samostiinoi-roboty"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><h2 id="zavdannia-dlia-samostiinoi-roboty-zavdannia-1">Завдання 1</h2><p>Розробити перелік полів для електронної картки події, яка повинна містити:</p><ul>
+<li>ідентифікатор;</li>
+<li>час;</li>
+<li>місце;</li>
+<li>джерело;</li>
+<li>опис;</li>
+<li>тип;</li>
+<li>статус;</li>
+<li>оцінку достовірності;</li>
+<li>рівень доступу;</li>
+<li>посилання на додаткові матеріали.</li>
+</ul><p>Для кожного поля визначити:</p><ul>
+<li>тип даних;</li>
+<li>обов’язковість;</li>
+<li>допустимі значення;</li>
+<li>правило перевірки.</li>
+</ul><h2 id="zavdannia-dlia-samostiinoi-roboty-zavdannia-2">Завдання 2</h2><p>Побудувати схему руху даних:</p><blockquote>
+<p><strong>джерело → отримання → перевірка → очищення → зберігання → аналіз → візуалізація.</strong></p>
+</blockquote><p>Для кожного етапу зазначити:</p><ul>
+<li>відповідального;</li>
+<li>вхідні дані;</li>
+<li>вихідні дані;</li>
+<li>можливі помилки;</li>
+<li>спосіб контролю.</li>
+</ul><h2 id="zavdannia-dlia-samostiinoi-roboty-zavdannia-3">Завдання 3</h2><p>Порівняти PostgreSQL, документну базу даних і файлове сховище за критеріями:</p><ul>
+<li>структура;</li>
+<li>пошук;</li>
+<li>масштабованість;</li>
+<li>контроль зв’язків;</li>
+<li>зберігання мультимедіа;</li>
+<li>історія змін;</li>
+<li>складність адміністрування.</li>
+</ul></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article><article class="lesson-page" id="page-vysnovky" data-page="vysnovky" hidden>
+      <header class="page-header">
+        <div><span class="eyebrow">Модуль 15 з 15</span><h1>Висновки</h1></div>
+        <button class="complete-btn" data-complete="vysnovky"><span>✓</span> Позначити завершеним</button>
+      </header>
+      <div class="lesson-content"><p>Збір і зберігання даних є базовими процесами інформаційно-аналітичного забезпечення органів військового управління. Якість аналітичного продукту безпосередньо залежить від повноти, точності, актуальності, достовірності та своєчасності початкових даних.</p><p>Ефективний збір даних передбачає:</p><ul>
+<li>чітке визначення інформаційної потреби;</li>
+<li>вибір надійних джерел;</li>
+<li>використання стандартизованих форматів;</li>
+<li>реєстрацію метаданих;</li>
+<li>перевірку якості;</li>
+<li>очищення та нормалізацію;</li>
+<li>контроль дублювання;</li>
+<li>простежуваність походження.</li>
+</ul><p>Ефективне зберігання передбачає:</p><ul>
+<li>вибір архітектури відповідно до типу даних;</li>
+<li>розмежування первинних, очищених та аналітичних даних;</li>
+<li>забезпечення доступності, цілісності та конфіденційності;</li>
+<li>ведення історії змін;</li>
+<li>резервне копіювання і тестування відновлення;</li>
+<li>каталогізацію;</li>
+<li>архівування;</li>
+<li>контроль строків зберігання.</li>
+</ul><p>Головним принципом є не накопичення максимальної кількості даних, а створення керованого інформаційного середовища, у якому кожен набір даних має визначене джерело, призначення, структуру, власника, рівень якості та правила використання.</p></div>
+      <footer class="page-footer"><button class="prev-next prev">← Попередній модуль</button><button class="prev-next next">Наступний модуль →</button></footer>
+    </article>
+      </main>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>window.IAZ_SECTIONS=[{"id": "zahalna-kharakterystyka-zaniattia", "title": "Загальна характеристика заняття", "mins": 2, "category": "Теорія"}, {"id": "vstup", "title": "Вступ", "mins": 2, "category": "Теорія"}, {"id": "osnovni-poniattia", "title": "Основні поняття", "mins": 2, "category": "Теорія"}, {"id": "navchalne-pytannia-1-osnovy-zboru-danykh-dlia-iaz-ouv", "title": "Навчальне питання 1. Основи збору даних для ІАЗ ОУВ", "mins": 8, "category": "Теорія"}, {"id": "navchalne-pytannia-2-osnovy-zberihannia-danykh-dlia-iaz-ouv", "title": "Навчальне питання 2. Основи зберігання даних для ІАЗ ОУВ", "mins": 9, "category": "Теорія"}, {"id": "uzahalnena-arkhitektura-zboru-ta-zberihannia-danykh", "title": "Узагальнена архітектура збору та зберігання даних", "mins": 2, "category": "Теорія"}, {"id": "navchalnyi-pryklad", "title": "Навчальний приклад", "mins": 2, "category": "Теорія"}, {"id": "praktychna-vprava-1-proiektuvannia-zboru-danykh", "title": "Практична вправа 1. Проєктування збору даних", "mins": 2, "category": "Практика"}, {"id": "praktychna-vprava-2-vybir-skhovyshcha", "title": "Практична вправа 2. Вибір сховища", "mins": 2, "category": "Практика"}, {"id": "sytuatsiine-zavdannia", "title": "Ситуаційне завдання", "mins": 2, "category": "Практика"}, {"id": "typovi-pomylky-pid-chas-orhanizatsii-zberihannia", "title": "Типові помилки під час організації зберігання", "mins": 2, "category": "Теорія"}, {"id": "metodychni-rekomendatsii-vykladachu", "title": "Методичні рекомендації викладачу", "mins": 2, "category": "Теорія"}, {"id": "kontrolni-zapytannia", "title": "Контрольні запитання", "mins": 2, "category": "Контроль"}, {"id": "zavdannia-dlia-samostiinoi-roboty", "title": "Завдання для самостійної роботи", "mins": 2, "category": "Практика"}, {"id": "vysnovky", "title": "Висновки", "mins": 2, "category": "Підсумок"}]; window.IAZ_QUIZ=[{"q": "Що найточніше характеризує дані?", "options": ["Готове управлінське рішення", "Формалізоване подання фактів і спостережень", "Будь-який документ незалежно від змісту", "Лише числові показники"], "answer": 1, "explain": "Дані — формалізоване подання фактів, подій, характеристик або результатів спостереження."}, {"q": "Що є метаданими?", "options": ["Резервна копія бази", "Дані, що описують інші дані", "Виключно координати", "Висновок аналітика"], "answer": 1, "explain": "Метадані описують походження, час, формат, автора, рівень доступу, версію та інші властивості даних."}, {"q": "Яка правильна послідовність ETL?", "options": ["Завантаження — перетворення — вилучення", "Вилучення — перетворення — завантаження", "Перетворення — вилучення — завантаження", "Вилучення — завантаження — перетворення"], "answer": 1, "explain": "ETL: Extract, Transform, Load — вилучення, перетворення, завантаження."}, {"q": "Яка характеристика якості показує наявність усіх необхідних значень?", "options": ["Унікальність", "Повнота", "Простежуваність", "Масштабованість"], "answer": 1, "explain": "Повнота визначає, чи заповнені всі необхідні поля та значення."}, {"q": "Для структурованих взаємопов’язаних даних найдоцільніше використати:", "options": ["Реляційну базу даних", "Тільки файлову папку", "Виключно графічний редактор", "Аудіоархів"], "answer": 0, "explain": "Реляційна база забезпечує таблиці, зв’язки, типи, обмеження цілісності та складні запити."}, {"q": "Який тип сховища найкраще підходить для координат, районів і просторових запитів?", "options": ["База часових рядів", "Геопросторова база", "Текстовий файл", "Поштова скринька"], "answer": 1, "explain": "Геопросторові бази підтримують точки, лінії, райони, відстані, перетини та пошук у радіусі."}, {"q": "Що визначає RPO?", "options": ["Максимальний час відновлення", "Максимально допустимий обсяг втрати даних у часі", "Кількість користувачів", "Рівень секретності"], "answer": 1, "explain": "RPO задає допустиму точку відновлення — скільки останніх даних у часовому вимірі можна втратити."}, {"q": "Чому реплікація не замінює резервне копіювання?", "options": ["Реплікація завжди повільніша", "Помилка або видалення може поширитися на всі репліки", "Реплікація працює лише з фото", "Резервне копіювання не потребує носія"], "answer": 1, "explain": "Репліки синхронізують стан, тому пошкодження або помилкове видалення також може реплікуватися."}, {"q": "Який принцип доступу вимагає надавати лише мінімально необхідні права?", "options": ["Принцип максимальної відкритості", "Принцип найменших привілеїв", "Принцип випадкового доступу", "Принцип повного копіювання"], "answer": 1, "explain": "Принцип найменших привілеїв обмежує права лише необхідними для виконання функцій."}, {"q": "Як доцільно працювати з повторними повідомленнями про одну подію?", "options": ["Завжди негайно видаляти", "Зберігати первинні повідомлення та пов’язувати їх із підтвердженою подією", "Перезаписувати перше повідомлення", "Зберігати лише найдовший текст"], "answer": 1, "explain": "Первинні повідомлення мають аналітичну цінність і простежуваність; підтверджена подія формується окремо."}, {"q": "Для телеметрії та показників із часовими мітками найкраще підходить:", "options": ["Графова база", "База часових рядів", "Презентація", "Текстовий процесор"], "answer": 1, "explain": "База часових рядів оптимізована для часових вибірок, агрегування, трендів і аномалій."}, {"q": "Що відрізняє озеро даних від класичного сховища даних?", "options": ["Озеро зберігає різнорідні первинні дані", "Озеро не може містити файли", "Сховище не має структури", "Між ними немає різниці"], "answer": 0, "explain": "Озеро даних зберігає великі обсяги первинних структурованих, напівструктурованих і неструктурованих даних."}];</script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
