@@ -1,0 +1,85 @@
+{
+  "training_note": "All records are synthetic; grid_x/grid_y are fictitious local training coordinates, not geographic coordinates.",
+  "fields": [
+    {
+      "name": "incident_id",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "event_time",
+      "type": "ISO-8601 datetime",
+      "required": true
+    },
+    {
+      "name": "sector",
+      "type": "enum",
+      "allowed": [
+        "B-2",
+        "B-3"
+      ],
+      "required": true
+    },
+    {
+      "name": "grid_x",
+      "type": "integer",
+      "range": [
+        0,
+        99
+      ],
+      "required": true
+    },
+    {
+      "name": "grid_y",
+      "type": "integer",
+      "range": [
+        0,
+        99
+      ],
+      "required": true
+    },
+    {
+      "name": "means",
+      "type": "enum",
+      "allowed": [
+        "artillery",
+        "mortar",
+        "rocket"
+      ],
+      "required": true
+    },
+    {
+      "name": "rounds",
+      "type": "integer",
+      "range": [
+        0,
+        99
+      ],
+      "required": true
+    },
+    {
+      "name": "source_type",
+      "type": "enum",
+      "allowed": [
+        "internet",
+        "api",
+        "formal_document"
+      ],
+      "required": true
+    },
+    {
+      "name": "source_ref",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "verification_status",
+      "type": "enum",
+      "allowed": [
+        "verified",
+        "pending"
+      ],
+      "required": true
+    }
+  ]
+}

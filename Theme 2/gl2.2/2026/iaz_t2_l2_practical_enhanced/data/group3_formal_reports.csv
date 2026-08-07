@@ -1,0 +1,7 @@
+report_id,event_time,sector,grid_x,grid_y,means,rounds,observer,status
+FRM-301,2026-08-07T06:35:00+03:00,B-2,43,61,artillery,5,Unit-X,verified
+FRM-302,2026/08/07 06:49,B-3,48,59,mortar,4,Unit-Y,verified
+FRM-303,2026-08-07T07:12:00+03:00,,46,63,rocket,2,Unit-X,verified
+FRM-304,2026-08-07T07:32:00+03:00,B-2,140,62,artillery,6,Unit-Z,verified
+FRM-305,2026-08-07T07:48:00+03:00,B-3,50,60,mortar,-1,Unit-Y,verified
+FRM-306,2026-08-07T07:55:00+03:00,B-2,44,65,artillery,3,Unit-X,verified

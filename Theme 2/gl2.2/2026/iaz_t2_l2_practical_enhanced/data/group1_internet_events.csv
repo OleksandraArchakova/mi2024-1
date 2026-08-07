@@ -1,0 +1,9 @@
+web_id,source,url,published_at,event_time,sector,grid_x,grid_y,means,rounds,note
+WEB-101,openwatch.example,https://openwatch.example/incidents/101,2026-08-07T06:18:00+03:00,2026-08-07T06:12:00+03:00,B-2,42,61,artillery,6,Synthetic public notice
+WEB-102,district-news.example,https://district-news.example/posts/102,2026-08-07T06:31:00+03:00,2026-08-07T06:25:00+03:00,B-3,47,58,mortar,4,Synthetic public notice
+WEB-103,openwatch.example,https://openwatch.example/incidents/103,2026-08-07T06:46:00+03:00,2026-08-07T06:42:00+03:00,A-1,18,25,artillery,8,Outside task sector
+WEB-104,civil-monitor.example,https://civil-monitor.example/alerts/104,2026-08-07T07:07:00+03:00,2026-08-07T07:02:00+03:00,B-2,41,63,rocket,3,Synthetic public notice
+WEB-105,openwatch.example,https://openwatch.example/incidents/105,2026-08-07T07:24:00+03:00,2026-08-07T07:18:00+03:00,B-3,49,60,artillery,5,Synthetic public notice
+WEB-106,mirror.example,https://mirror.example/item/106,2026-08-07T07:26:00+03:00,2026-08-07T06:25:00+03:00,B-3,47,58,mortar,4,Likely duplicate of WEB-102
+WEB-107,district-news.example,https://district-news.example/posts/107,2026-08-07T08:11:00+03:00,2026-08-07T08:05:00+03:00,B-2,43,62,mortar,2,Outside time window
+WEB-108,civil-monitor.example,https://civil-monitor.example/alerts/108,2026-08-07T07:51:00+03:00,2026-08-07T07:44:00+03:00,C-1,70,31,rocket,6,Outside task sector
